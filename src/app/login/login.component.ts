@@ -45,11 +45,20 @@ sjekk(){
 
   sjekkgreier(brukr: string,pass: string){
      
-      const p = new user();
-      p.brukernavn = brukr;
-      p.passord = pass;
+    const p = new user();
+    p.brukernavn = brukr;
+    p.passord = pass;
 
-     (this.se.post(p))
-  }
+   (this.se.post(p)).subscribe(data => {
+     
+     if(data=="0")
+     {alert("Beklager men ikke riktig")}
+     else{alert("Velkommen"); 
+     console.log(data)} 
+     
+    },
+    error =>{console.log("en feil oppsto "+error);
+    })
   
+}
 }

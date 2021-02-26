@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { user } from './model/user';
 import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,19 +13,13 @@ export class CheckuserService {
   constructor(private sjekkHTTP : HttpClient) { 
   }
 
-  post(data: user){
-
+  post(data: user) : Observable<Object>{
+ 
     const sjekkdata = {
         "username": data.brukernavn,
         "password": data.passord
     }
-    this.sjekkHTTP.post(this.url,sjekkdata).subscribe(data => {console.log(data);
-    if(data=="Brukeren er riktig"){
-      alert("Kratulerer")
-    }else{
-      alert("Desverre")
-    }
-    })
+    return this.sjekkHTTP.post(this.url,sjekkdata)
   }
 
   getToken() {
