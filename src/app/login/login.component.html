@@ -1,0 +1,24 @@
+
+
+<h2>Logg inn </h2>
+<hr>
+
+<div class="container center_div ">
+        <form [formGroup]="login" (ngSumbit)="sjekk()" >
+   
+                <p>Brukernavn :</p>
+                <input type="text" formControlName="brukernavn" id="navn" required>
+                <label *ngIf="innBruker()" class="text-danger" >Må skrive inn noe</label>
+                <p>Passord : </p>
+                <input type="password" formControlName="passord" required minlength="6">
+                <label *ngIf="innpassord()" class="text-danger">Må ha minst 6 tegn</label> <br><br>
+                <button type="submit" (click)="sjekk()" class="btn btn-primary">Logg inn</button>
+                
+        
+        </form>
+</div>
+
+
+
+<p>{{login.status}}</p>
+test
